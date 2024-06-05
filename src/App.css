@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.body {
+    font-family: Oswald;
+}
+
+.nav-menu {
+    width: 180px;
+    height: 150px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 100%;
+    background-color: rgb(255, 255, 255);
+    right: 1.5px;
+    overflow: hidden;
+    z-index: 1000;
+    border-radius: 15px 0px 0px 15px;
+    box-shadow: -5px 10px 10px #2d1b1b95;
+    transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.active {
+    /* display: flex; */
+    visibility: visible;
+    opacity: 100;
+    transform: none;
+}
+
+/* .bg-img-1 {
+    background-image: url('./assets/truck-img1.jpeg');
+}
+.bg-img-2 {
+    background-image: url('./assets/truck-img2.jpeg');
+}
+
+.skew-section {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+} */
+
+.choose-bg{
+    background-image: url('./assets/choose-bg-3.jpg');
+    background-repeat: no-repeat no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
