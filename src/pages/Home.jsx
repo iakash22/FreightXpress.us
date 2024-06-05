@@ -18,7 +18,7 @@ const Home = () => {
         <div className=''>
             <div className='bg-[#650704] w-full h-[calc(100vh-280px)] md:h-full'>
                 <div className='flex sm:px-[4rem] lg:justify-between justify-center'>
-                    <h1 className='lg:text-7xl font-oswald font-bold text-[#fff] text-5xl md:mt-[5rem] my-[3rem]'>
+                    <h1 className='lg:text-7xl sm:block hidden font-oswald font-bold text-[#fff] text-5xl md:mt-[5rem] my-[3rem]'>
                         FreightXpress
                         <p className='lg:text-7xl md:text-5xl font-oswald font-bold text-[#fff] sm:text-7xl'>Corporation</p>
                     </h1>
@@ -27,20 +27,24 @@ const Home = () => {
                         data-aos-duration="1000"
                         data-aos-offset="300"
                         data-aos-easing="ease-in-sine"
-                        className='mt-[2rem] z-[10] hidden md:block rounded-[35px] shadow-md shadow-[#eb5d5d69]'>
+                        className='sm:mt-[2rem] z-[10] sm:w-fit w-full block rounded-none sm:rounded-[35px] shadow-md shadow-[#eb5d5d69] sm:mb-0 mb-2'>
                         <video
                             autoPlay
                             muted
                             loop
-                            className='lg:w-[580px] md:w-[380px] md:h-[350px] lg:h-[450px] object-fill rounded-[35px] shadow-md shadow-[#00000069]'
+                            className='lg:w-[580px] md:w-[380px] md:h-[350px] lg:h-[450px] h-[280px] w-full object-cover sm:rounded-[35px] shadow-md shadow-[#00000069]'
                         >
                             <source src={Hero_Video} type='video/mp4' />
                         </video>
                     </div>
                 </div>
 
-                <div className='bg-[#fff] rounded-t-[50px] sm:px-[4rem] md:-mt-[10rem] lg:-mt-[15rem] z-[1] h-[100%] flex justify-center items-center flex-col md:justify-start md:items-start'>
-                    <p className='text-[#650704] lg:text-xl font-oswald md:w-[40%] pt-5 sm:font-medium mt-[3rem] w-[80%] text-wrap'>
+                <div className='bg-[#fff] sm:rounded-t-[50px] sm:px-[4rem] -mt-[0.38rem] md:-mt-[10rem] lg:-mt-[15rem] z-[1] h-[100%] flex sm:justify-center items-center flex-col md:justify-start md:items-start'>
+                    <h1 className='lg:text-7xl sm:hidden block font-oswald font-bold text-main text-5xl sm:mt-0 mt-5'>
+                        FreightXpress
+                        <p className='lg:text-7xl md:text-5xl font-oswald font-bold text-[#fff] sm:text-7xl'>Corporation</p>
+                    </h1>
+                    <p className='text-[#650704] lg:text-xl font-oswald md:w-[40%] sm:pt-5 pt-0 sm:font-medium sm:mt-[3rem] mt-1 w-[80%] text-wrap'>
                         Looking for the Best Transport Services?
                         As a app web crawler expert, We will help to organize.
                     </p>
