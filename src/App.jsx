@@ -6,6 +6,7 @@ import Footer from './controllers/Footer'
 import Headroom from 'react-headroom'
 
 const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() =>  import('./pages/About'))
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         </Headroom>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
         </Routes>
         <Footer />
       </Suspense>
