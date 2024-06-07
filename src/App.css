@@ -47,10 +47,21 @@
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 } */
 
-.choose-bg{
+.choose-bg {
     background-image: url('./assets/choose-bg-3.jpg');
     background-repeat: no-repeat no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
+}
+
+/* @media screen and (min-width : 480px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: none;
+    }
+} */
+
+.swiper-pagination{
+    margin-top: 5rem;
 }

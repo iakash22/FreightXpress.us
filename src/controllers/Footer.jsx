@@ -3,11 +3,13 @@ import {
     FaFacebook, FaInstagram, FaLinkedinIn, FaTwitter, FaPhone
 } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
+import { useLocation } from 'react-router-dom';
 
 const Footer = () => {
+    const location = useLocation();
     return (
         // <div className='bg-[#ff4c4c3f] backdrop-contrast-100'>
-            <div className='bg-main md:rounded-t-[30px] md:px-[4rem] py-[2rem] px-4'>
+        <div className={`bg-main ${location.pathname == "/about" ? '' : 'md:rounded-t-[30px]'} md:px-[4rem] py-[2rem] px-4`}>
                 <div className='flex lg:flex-nowrap flex-wrap justify-between my-10 md:w-[99%] gap-x-8 gap-y-8'>
                     <div className='md:w-[35%]'>
                         <img
