@@ -49,7 +49,7 @@ const Headers = () => {
                             />
                         </Link>
 
-                        <div className='font-heading font-oswald md:text-4xl text-3xl tracking-wide font-bold capitalize text-[#650704] drop-shadow-head-shade sm:block hidden'>
+                        <div className='font-heading font-oswald md:text-4xl sm:text-3xl text-2xl tracking-wide font-bold capitalize text-[#650704] drop-shadow-head-shade'>
                             FreightXpress
                             <p className='text-sm font-oswald font-normal md:font-medium text-start'>Corporation</p>
                         </div>
