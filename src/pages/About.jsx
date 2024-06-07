@@ -89,7 +89,7 @@ const About = () => {
                         </div>
                         <div className='w-[75%]'>
                             <h3 className='text-lg lg:text-xl font-oswald text-main font-semibold'>Local Service</h3>
-                            <p className='text-sm md:text-[16px] font-oswald text-neutral-700'>Nam eget convallis neque. Sed porta eleifend posuere integer posuere purus.</p>
+                            <p className='text-sm md:text-[16px] font-oswald text-neutral-700'>Choose comfort. Efficient service ensures pure satisfaction.</p>
                         </div>
                     </div>
 
