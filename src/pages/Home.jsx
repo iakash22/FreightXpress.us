@@ -9,15 +9,42 @@ import TruckImg1 from '../assets/truck-img2.jpeg'
 import TruckImg2 from '../assets/truck-img1.jpeg'
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import { Link } from 'react-router-dom';
+
+
+const initialData = {
+    pickupLocation: "",
+    dropLocation: "",
+    pickupDate: "",
+    pickupAccessorial: "",
+    dropAccessorial: "",
+    description : "",
+    weight: "",
+    width: "",
+    length: "",
+    height: "",
+    freightClass : "",
+    packageQuality : "",
+    palletCount: "",
+    packageType: "",
+    additionalServices: "",
+}
 
 const Home = () => {
+    const [data, setData] = useState(initialData);
+    
+    const submitHandler = (e) => {
+        e.preventDefault();
+        console.log(data);
+    }
+
     useEffect(() => {
         Aos.init({ duration: 1500, mirror: false });
     })
     return (
         <div className=''>
             <div className='bg-[#650704] w-full h-[calc(100vh-280px)] md:h-full'>
-                <div className='flex sm:px-[4rem] lg:justify-between justify-center'>
+                <div className='flex sm:px-[4rem] md:justify-between justify-center'>
                     <h1 className='lg:text-7xl sm:block hidden font-oswald font-bold text-[#fff] text-5xl md:mt-[5rem] my-[3rem]'>
                         FreightXpress
                         <p className='lg:text-7xl md:text-5xl font-oswald font-bold text-[#fff] sm:text-7xl'>Corporation</p>
@@ -49,7 +76,7 @@ const Home = () => {
                         As a app web crawler expert, We will help to organize.
                     </p>
                     <button className='px-4 py-3 rounded-sm font-oswald text-[#fff] bg-[#650704] font-semibold lg:mt-[4.5rem] md:mt-[3rem] my-[3rem]'>
-                        <a href="tel:+12092223455">
+                        <a href="/contact">
                             Connect with us
                         </a>
                     </button>
@@ -57,7 +84,7 @@ const Home = () => {
             </div>
 
             <div className='md:my-[3rem] font-oswald mt-[10rem] mb-[3rem] sm:px-[4rem]'>
-                <form className='bg-[#fffffff2] flex flex-col justify-center'>
+                <form onSubmit={submitHandler} className='bg-[#fffffff2] flex flex-col justify-center'>
                     <div className='my-5'>
                         <div className='bg-[#650704] flex items-center justify-center p-2 h-fit '>
                             <p className='text-xl text-[#fff] text-nowrap font-medium'>PICK UP / DROP OFF</p>
@@ -68,18 +95,25 @@ const Home = () => {
                                 <p className='text-[#650704] text-lg font-semibold mb-2'>Origin</p>
                                 <CustomSearch
                                     title={'Pick Up Location*'}
+                                    value={data.pickupLocation}
+                                    setValue={setData}
+                                    name={"pickupLocation"}
                                 />
                                 <div>
                                     <p className='text-sm text-[#650704] mb-1'>Pick Up Date*</p>
                                     <input
                                         type="date"
                                         required
-                                        value={Date.now()}
+                                        name="pickupDate"
+                                        onChange={(e) => setData(prev => ({...prev,["pickupDate"] : e.target.value}))}
                                         className='w-full px-2 py-3 bg-[#c8e7fb47] text-neutral-600 font-light cursor-pointer border-none outline-none'
                                     />
                                 </div>
                                 <CustomDropDown
+                                    value={data.pickupAccessorial}
+                                    setValue={setData}
                                     title={'Pick Up Accessorial'}
+                                    name={"pickupAccessorial"}
                                     dropDownItems={[
                                         "Pickup Lift Gate Service",
                                         "Pickup Inside",
@@ -94,9 +128,15 @@ const Home = () => {
                                 <p className='text-[#650704] text-lg font-semibold mb-2 '>Destination</p>
                                 <CustomSearch
                                     title={'Drop Off Location*'}
+                                    name={"dropLocation"}
+                                    value={data.dropLocation}
+                                    setValue={setData}
                                 />
                                 <CustomDropDown
                                     title={'Drop Off Accessorial'}
+                                    name={"dropAccessorial"}
+                                    value={data.dropAccessorial}
+                                    setValue={setData}
                                     dropDownItems={[
                                         "Delivery Appointment",
                                         "Delivery Lift Gate Service",
@@ -120,17 +160,29 @@ const Home = () => {
                             <div className='flex flex-col gap-y-3 md:w-[30%] relative'>
                                 <CustomInput
                                     title={'Description*'}
+                                    name={'description'}
+                                    value={data.description}
+                                    setValue={setData}
                                 />
                                 <CustomInput
                                     title={'Total Weight*'}
                                     placeholder={"Total Weight (lbs.)*"}
+                                    name={'weight'}
+                                    value={data.weight}
+                                    setValue={setData}                                    
                                 />
                                 <CustomInput
                                     title={'Pallet Count*'}
                                     placeholder={"Pallet Count*"}
+                                    value={data.palletCount}
+                                    name={"palletCount"}
+                                    setValue={setData}
                                 />
                                 <CustomDropDown
                                     title={'Package Type*'}
+                                    name={"packageType"}
+                                    value={data.packageType}
+                                    setValue={setData}
                                     dropDownItems={[
                                         "Package Type*",
                                         "Skid",
@@ -148,6 +200,9 @@ const Home = () => {
                                 />
                                 <CustomDropDown
                                     title={'Additional Services'}
+                                    value={data.additionalServices}
+                                    name={"additionalServices"}
+                                    setValue={setData}
                                     dropDownItems={[
                                         "Additional Services",
                                         "Blinde Shipment",
@@ -164,21 +219,36 @@ const Home = () => {
                             <div className='flex flex-col gap-y-3 md:w-[30%] relative'>
                                 <CustomInput
                                     title={'Width*'}
+                                    name={"width"}
+                                    value={data.width}
+                                    setValue={setData}
                                     placeholder={"Width (inches)*"}
                                 />
                                 <CustomInput
                                     title={'Length*'}
+                                    name={"length"}
+                                    value={data.length}
+                                    setValue={setData}
                                     placeholder={"Length (inches)*"}
                                 />
                                 <CustomInput
                                     title={'Height*'}
+                                    name={"height"}
+                                    value={data.height}
+                                    setValue={setData}
                                     placeholder={"Height (inches)*"}
                                 />
                                 <CustomInput
                                     title={'Package Qty*'}
+                                    name={"packageQuality"}
+                                    value={data.packageQuality}
+                                    setValue={setData}
                                 />
                                 <CustomDropDown
                                     title={'Freight Class*'}
+                                    name={"freightClass"}
+                                    value={data.freightClass}
+                                    setValue={setData}
                                     dropDownItems={[
                                         "Freight Class*",
                                         "60",
@@ -201,7 +271,7 @@ const Home = () => {
                     <button
                         type='submit'
                         className='px-2 py-3 bg-main w-[100px] rounded-[6px] text-xl font-oswald font-light text-[#FFFFFF] self-center mt-8 mb-5'>
-                        Temp
+                        Sumbit
                     </button>
                 </form>
             </div>
@@ -295,12 +365,14 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <button className='px-2 py-[8px] mx-auto text-[#373A40] text-lg font-medium border-2 border-main mt-3 group flex items-center gap-x-2 rounded-sm'>
-                            ABOUT US
-                            <FaArrowRight
-                                className='group-hover:translate-x-2 transition group-hover:text-main'
-                            />
-                        </button>
+                        <Link to={'/about'}>
+                            <button className='px-2 py-[8px] mx-auto text-[#373A40] text-lg font-medium border-2 border-main mt-3 group flex items-center gap-x-2 rounded-sm'>
+                                ABOUT US
+                                <FaArrowRight
+                                    className='group-hover:translate-x-2 transition group-hover:text-main'
+                                />
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -310,13 +382,14 @@ const Home = () => {
 
 export default Home
 
-const CustomDropDown = ({ title, dropDownItems }) => {
+const CustomDropDown = ({ title, dropDownItems,name,value,setValue }) => {
     const [open, setOpen] = useState(false);
     const ref = useRef();
     const [newTitle, setNewTitle] = useState(title);
+
     useEffect(() => {
         const close = (e) => {
-            if (!ref.current.contains(e.target)) {
+            if (ref.current && !ref.current.contains(e.target)) {
                 setOpen(false);
             }
             // console.log(e.target);
@@ -328,6 +401,7 @@ const CustomDropDown = ({ title, dropDownItems }) => {
 
     const clickHandler = (item) => {
         setNewTitle(item);
+        setValue(prev => ({ ...prev, [name]: item }));
         setOpen(false);
     }
 
@@ -363,7 +437,7 @@ const CustomDropDown = ({ title, dropDownItems }) => {
     )
 }
 
-const CustomSearch = ({ title }) => {
+const CustomSearch = ({ title,value,setValue,name }) => {
     const [open, setOpen] = useState(false);
     const [field, setField] = useState("");
     useEffect(() => {
@@ -372,17 +446,23 @@ const CustomSearch = ({ title }) => {
         }
         // getSearchCityData();
     }, [field])
+
+    const onChangeHandler = (e) => {
+        const { name, value } = e.target;
+        setValue(prev => ({ ...prev, [name]: value }));
+    }
     return (
         <div>
             <p className='text-sm text-[#650704] mb-1'>{title}</p>
             <div className='relative w-full'>
                 <input
-                    type='search'
+                    type='text'
                     onFocus={() => setOpen(true)}
                     onBlur={() => setOpen(false)}
                     placeholder={title}
-                    value={field}
-                    onChange={(e) => setField(e.target.value)}
+                    value={value}
+                    name={name}
+                    onChange={onChangeHandler}
                     className='flex justify-between gap-x-10 bg-[#c8e7fb47] px-2 py-3 cursor-pointer w-full border-none outline-none
                                 placeholder:text-neutral-600 placeholder:font-light'
                 />
@@ -402,8 +482,8 @@ const CustomSearch = ({ title }) => {
     )
 }
 
-const CustomInput = ({ title, placeholder }) => {
-    const [field, setField] = useState("");
+const CustomInput = ({ title, placeholder,value,name,setValue }) => {
+    // const [field, setField] = useState("");
     return (
         <div>
             <p className='text-sm text-[#650704] mb-1'>{title}</p>
@@ -411,8 +491,9 @@ const CustomInput = ({ title, placeholder }) => {
                 <input
                     type='text'
                     required
-                    value={field}
-                    onChange={(e) => setField(e.target.value)}
+                    value={value}
+                    name={name}
+                    onChange={(e) => setValue(prev => ({...prev, [name] : e.target.value}))}
                     placeholder={placeholder ? placeholder : title}
                     className='flex justify-between gap-x-10 bg-[#c8e7fb47] px-2 py-3 cursor-pointer w-full border-none outline-none
                                 placeholder:text-neutral-600 placeholder:font-light'

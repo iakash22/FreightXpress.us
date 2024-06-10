@@ -34,8 +34,8 @@ const CardSlider = ({ data }) => {
                 pagination={{ clickable: true, dynamicBullets: true, }}
                 scrollbar={{ draggable: true }}
                 thumbs={{ swiper: thumbsSwiper }}
-                onSwiper={(swiper) => console.log(swiper)}
-                onSlideChange={() => console.log('slide change')}
+                onSwiper={(swiper) => "console.log(swiper)"}
+                onSlideChange={() => "console.log('slide change')"}
                 autoplay={{
                     delay: 2500,
                     disableOnInteraction: false,

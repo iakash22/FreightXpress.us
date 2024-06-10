@@ -67,7 +67,7 @@ const Headers = () => {
                         />
                         <NavLink
                             title={"Contact Us"}
-                            to={'#'}
+                            to={'/contact'}
                             style={"md:text-lg"}
                         />
                     </div>
@@ -115,7 +115,7 @@ const Headers = () => {
                             />
                             <NavLink
                                 title={"Contact Us"}
-                                to={'#'}
+                                to={'/contact'}
                                 style={"text-lg"}
                             />
                         </div>

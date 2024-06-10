@@ -11,6 +11,7 @@ import Truck1 from '../assets/truck-img-4.jpeg'
 import Truck2 from '../assets/truck-img-5.jpeg'
 import Truck3 from '../assets/truck-img-6.jpeg'
 import CardSlider from '../controllers/CardSlider';
+import { useNavigate } from 'react-router-dom';
 
 const testimonialData = [
     {
@@ -40,6 +41,7 @@ const testimonialData = [
 ]
 
 const About = () => {
+    const navigate = useNavigate();
     useEffect(() => {
         Aos.init({ duration: 1000 });
     })
@@ -93,7 +95,7 @@ const About = () => {
                         </div>
                     </div>
 
-                    <button className='text-lg font-oswald bg-main text-[#FFFFFF] px-5 py-2 font-medium rounded-[8px] mt-5 self-center md:self-start'>
+                    <button onClick={() => navigate('/contact')} className='text-lg font-oswald bg-main text-[#FFFFFF] px-5 py-2 font-medium rounded-[8px] mt-5 self-center md:self-start'>
                         Contact Us
                     </button>
                 </div>
@@ -148,7 +150,7 @@ const About = () => {
                     <h2 className='text-xl font-bold'>Looking for the Best Transport Services?</h2>
                     <p className='text-sm font-light mt-2'>As a app web crawler expert, We will help to organize.</p>
                 </div>
-                <button className='py-3 px-4 text-base font-semibold text-[#fff] bg-main hover:bg-[#0592fd] transition rounded-sm text-nowrap self-start'>
+                <button onClick={() => navigate('/contact')} className='py-3 px-4 text-base font-semibold text-[#fff] bg-main hover:bg-[#0592fd] transition rounded-sm text-nowrap self-start'>
                     GET A QUOTE
                 </button>
             </div>
