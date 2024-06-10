@@ -65,7 +65,7 @@ const Contact = () => {
                     </div>
 
                     <div className='font-oswald bg-[#f0efefe0] mt-5 px-2 py-5 md:p-10 w-full rounded-sm'>
-                        <h2 className='text-4xl font-medium text-main text-center mb-8'>Get a Quote</h2>
+                        <h2 className='text-4xl md:text-6xl font-medium md:font-bold text-main text-center mb-8'>Get a Quote</h2>
                         <form onSubmit={sumbitHandler} className='flex flex-col gap-y-6 mb-8 md:mb-0'>
                             <input
                                 type="text"
