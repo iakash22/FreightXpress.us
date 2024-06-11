@@ -4,6 +4,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { FaTruckLoading } from "react-icons/fa";
 import { FaTruckFast, FaTruckFront, FaArrowRight } from "react-icons/fa6";
 import { LuShip } from "react-icons/lu";
+import { ImLocation2 } from "react-icons/im";
 import { getCityData } from '../utils/getCitySearch';
 import TruckImg1 from '../assets/truck-img2.jpeg'
 import TruckImg2 from '../assets/truck-img1.jpeg'
@@ -18,13 +19,13 @@ const initialData = {
     pickupDate: "",
     pickupAccessorial: "",
     dropAccessorial: "",
-    description : "",
+    description: "",
     weight: "",
     width: "",
     length: "",
     height: "",
-    freightClass : "",
-    packageQuality : "",
+    freightClass: "",
+    packageQuality: "",
     palletCount: "",
     packageType: "",
     additionalServices: "",
@@ -32,12 +33,11 @@ const initialData = {
 
 const Home = () => {
     const [data, setData] = useState(initialData);
-    
+
     const submitHandler = (e) => {
         e.preventDefault();
         console.log(data);
     }
-
     useEffect(() => {
         Aos.init({ duration: 1500, mirror: false });
     })
@@ -105,7 +105,7 @@ const Home = () => {
                                         type="date"
                                         required
                                         name="pickupDate"
-                                        onChange={(e) => setData(prev => ({...prev,["pickupDate"] : e.target.value}))}
+                                        onChange={(e) => setData(prev => ({ ...prev, ["pickupDate"]: e.target.value }))}
                                         className='w-full px-2 py-3 bg-[#c8e7fb47] text-neutral-600 font-light cursor-pointer border-none outline-none'
                                     />
                                 </div>
@@ -169,7 +169,7 @@ const Home = () => {
                                     placeholder={"Total Weight (lbs.)*"}
                                     name={'weight'}
                                     value={data.weight}
-                                    setValue={setData}                                    
+                                    setValue={setData}
                                 />
                                 <CustomInput
                                     title={'Pallet Count*'}
@@ -380,9 +380,9 @@ const Home = () => {
     )
 }
 
-export default Home
+export default Home;
 
-const CustomDropDown = ({ title, dropDownItems,name,value,setValue }) => {
+const CustomDropDown = ({ title, dropDownItems, name, value, setValue }) => {
     const [open, setOpen] = useState(false);
     const ref = useRef();
     const [newTitle, setNewTitle] = useState(title);
@@ -437,28 +437,57 @@ const CustomDropDown = ({ title, dropDownItems,name,value,setValue }) => {
     )
 }
 
-const CustomSearch = ({ title,value,setValue,name }) => {
+const CustomSearch = ({ title, value, setValue, name }) => {
     const [open, setOpen] = useState(false);
-    const [field, setField] = useState("");
+    const [cityList, setCityList] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const searchRef = useRef();
+
     useEffect(() => {
         const getSearchCityData = async () => {
-            await getCityData(field);
+            setLoading(true);
+            let list = [];
+            if (value && value !== " ") {
+                list = await getCityData(value);
+            }
+            setCityList(list);
+            setLoading(false);
         }
-        // getSearchCityData();
-    }, [field])
+        getSearchCityData();
+    }, [value])
+
+    useEffect(() => {
+        const close = (e) => {
+            if (searchRef.current && !searchRef.current.contains(e.target)) {
+                setOpen(false);
+            }
+            // console.log(e.target);
+        }
+        document.addEventListener('mousedown', close, true);
+
+        return () => document.removeEventListener('mousedown', close);
+    })
+    // console.log(cityList);
 
     const onChangeHandler = (e) => {
         const { name, value } = e.target;
         setValue(prev => ({ ...prev, [name]: value }));
     }
+
+    const onclickCityHandler = (city, state, country, name) => {
+        const value = city + ", " + state + ", " + country;
+        console.log(value);
+        setValue(prev => ({ ...prev, [name]: value }));
+        setOpen(false);
+    }
+
     return (
-        <div>
+        <div className='relative' ref={searchRef}>
             <p className='text-sm text-[#650704] mb-1'>{title}</p>
             <div className='relative w-full'>
                 <input
                     type='text'
                     onFocus={() => setOpen(true)}
-                    onBlur={() => setOpen(false)}
                     placeholder={title}
                     value={value}
                     name={name}
@@ -471,18 +500,47 @@ const CustomSearch = ({ title,value,setValue,name }) => {
                 />
             </div>
 
-            {
-                open && (
-                    <div>
-                        Searching...
-                    </div>
-                )
+            {open && <div className={`bg-[#ffffff] rounded-md shadow-lg shadow-[#474747ab] absolute z-[100] py-3`}>
+                {
+                    cityList && cityList.length > 0 ?
+                        (
+                            <ul className='flex flex-col gap-y-1 rounded-md'>
+                                {
+                                    cityList.map((data, index) => (
+                                        <li
+                                            className='px-5 py-1 hover:bg-[#fc79795f] font-oswald transition duration-200 cursor-pointer group flex flex-row items-end gap-x-2'
+                                            key={index}
+                                            onClick={() => onclickCityHandler(
+                                                data?.properties?.city,
+                                                data?.properties?.state,
+                                                data?.properties?.country,
+                                                name
+                                            )}
+                                        >
+                                            <ImLocation2 className='group-hover:text-main transition text-[18px] text-neutral-600 mb-1' />
+                                            <div>
+                                                <p className='font-oswald text-neutral-800 sm:text-lg text-base group-hover:text-main transition'>{data?.properties?.city}</p>
+                                                <p className='font-oswald text-neutral-600 sm:text-sm text-xs -mt-1 font-light'>{data?.properties?.state}, {data?.properties?.country}</p>
+                                            </div>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        )
+                        :
+                        (
+                            value && (<div className='w-[150px] text-center text-neutral-600 font-oswald'>
+                                {loading ? "Searching..." : "Not found"}
+                            </div>)
+                        )
+                }
+            </div>
             }
         </div>
     )
 }
 
-const CustomInput = ({ title, placeholder,value,name,setValue }) => {
+const CustomInput = ({ title, placeholder, value, name, setValue }) => {
     // const [field, setField] = useState("");
     return (
         <div>
@@ -493,7 +551,7 @@ const CustomInput = ({ title, placeholder,value,name,setValue }) => {
                     required
                     value={value}
                     name={name}
-                    onChange={(e) => setValue(prev => ({...prev, [name] : e.target.value}))}
+                    onChange={(e) => setValue(prev => ({ ...prev, [name]: e.target.value }))}
                     placeholder={placeholder ? placeholder : title}
                     className='flex justify-between gap-x-10 bg-[#c8e7fb47] px-2 py-3 cursor-pointer w-full border-none outline-none
                                 placeholder:text-neutral-600 placeholder:font-light'
