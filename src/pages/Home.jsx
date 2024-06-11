@@ -271,7 +271,7 @@ const Home = () => {
                     <button
                         type='submit'
                         className='px-2 py-3 bg-main w-[100px] rounded-[6px] text-xl font-oswald font-light text-[#FFFFFF] self-center mt-8 mb-5'>
-                        Sumbit
+                        Submit
                     </button>
                 </form>
             </div>
