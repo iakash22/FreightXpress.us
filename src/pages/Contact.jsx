@@ -3,25 +3,33 @@ import TruckImg from '../assets/truck-img-6.jpeg'
 import { GrLocation, GrPhone } from "react-icons/gr";
 import { MdOutlineAttachEmail } from "react-icons/md";
 import { Link, useNavigate } from 'react-router-dom';
+import { createSheetData } from '../utils/sheetDbService';
 
 const initialData = {
     name: "",
     email: "",
-    phoneNumber: "",
+    phone: "",
     message: "",
 };
 
 const Contact = () => {
     const [data, setData] = useState(initialData);
+    const [successMsg, setSuccessMsg] = useState();
+    const [errorMsg, setErrorMsg] = useState();
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const URL = import.meta.env.VITE_CONTACT_DB_URL;
     const onChangeHandler = (e) => {
         const { value, name } = e.target;
         setData(prev => ({ ...prev, [name]: value }));
     }
 
-    const sumbitHandler = (e) => {
+    const sumbitHandler = async (e) => {
         e.preventDefault();
-        console.log(data);
+        // console.log(data);
+        setLoading(true);
+        await createSheetData(URL, data, setSuccessMsg, setErrorMsg);
+        setLoading(false);
         setData(initialData);
     }
     return (
@@ -88,8 +96,10 @@ const Contact = () => {
                             <input
                                 type="text"
                                 placeholder='Phone Number*'
-                                name='phoneNumber'
-                                value={data.phoneNumber}
+                                name='phone'
+                                maxLength={12}
+                                minLength={6}
+                                value={data.phone}
                                 onChange={onChangeHandler}
                                 required
                                 className='w-full px-5 py-2 text-base outline-none md:text-lg md:py-3 md:px-8 bg-[#fff] border-none rounded-md placeholder:text-neutral-500 text-neutral-700'
@@ -97,7 +107,7 @@ const Contact = () => {
                             <textarea
                                 name="message"
                                 id="message"
-                                rows={10}
+                                rows={8}
                                 placeholder='Your Message*'
                                 value={data.message}
                                 onChange={onChangeHandler}
@@ -108,7 +118,19 @@ const Contact = () => {
                             <button
                                 type='submit'
                                 className='text-lg bg-main md:py-[10px] py-1 md:px-8 md:text-xl md:font-normal px-4 text-[#fff] font-light tracking-wider rounded-md'
-                            > Submit</button>
+                            >
+                                {loading ? "Submiting..." : "Sumbit"}
+                            </button>
+                            {
+                                successMsg && (
+                                    <div className='text-lg text-main drop-shadow shadow-main font-semibold'>{successMsg}</div>
+                                )
+                            }
+                            {
+                                errorMsg && (
+                                    <div className='text-lg text-main drop-shadow shadow-main font-semibold'>{errorMsg}</div>
+                                )
+                            }
                         </form>
 
                     </div>
@@ -121,7 +143,7 @@ const Contact = () => {
                     <p className='text-sm font-light mt-2'>As a app web crawler expert, We will help to organize.</p>
                 </div>
                 <button
-                    onClick={() => { navigate('/contact');  window.scrollTo(0,0)}}
+                    onClick={() => { navigate('/contact'); window.scrollTo(0, 0) }}
                     className='py-3 px-4 text-base font-semibold text-[#fff] bg-main hover:bg-[#0592fd] transition rounded-sm text-nowrap self-start'>
                     GET A QUOTE
                 </button>

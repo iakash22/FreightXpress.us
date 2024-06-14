@@ -11,6 +11,7 @@ import TruckImg2 from '../assets/truck-img1.jpeg'
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import { Link } from 'react-router-dom';
+import { createSheetData } from '../utils/sheetDbService';
 
 
 const initialData = {
@@ -33,9 +34,16 @@ const initialData = {
 
 const Home = () => {
     const [data, setData] = useState(initialData);
+    const [loading, setLoading] = useState(false);
+    const [successMsg, setSuccessMsg] = useState();
+    const [errorMsg, setErrorMsg] = useState();
+    const URL = import.meta.env.VITE_DB_URL;
 
-    const submitHandler = (e) => {
+    const submitHandler = async(e) => {
         e.preventDefault();
+        setLoading(true);
+        await createSheetData(URL, data,setSuccessMsg,setErrorMsg);
+        setLoading(false);
         console.log(data);
     }
     useEffect(() => {
@@ -271,9 +279,21 @@ const Home = () => {
                     <button
                         type='submit'
                         className='px-2 py-3 bg-main w-[100px] rounded-[6px] text-xl font-oswald font-light text-[#FFFFFF] self-center mt-8 mb-5'>
-                        Submit
+                        {loading ? "Submiting..." : "Submit"}
                     </button>
+                    {/* {
+                        errorMsg && (
+                            <div className='text-lg text-main drop-shadow shadow-main font-semibold'>{errorMsg}</div>
+                        )
+                    }
+                    {
+                        successMsg && (
+                            <div className='text-lg text-main drop-shadow shadow-main font-semibold'>{successMsg}</div>
+                        )
+                    } */}
                 </form>
+
+                
             </div>
 
             <div className="relative overflow-hidden bg-[#FFFFFF] font-oswald sm:px-[4rem] px-4">
@@ -476,7 +496,7 @@ const CustomSearch = ({ title, value, setValue, name }) => {
 
     const onclickCityHandler = (city, state, country, name) => {
         const value = city + ", " + state + ", " + country;
-        console.log(value);
+        // console.log(value);
         setValue(prev => ({ ...prev, [name]: value }));
         setOpen(false);
     }
