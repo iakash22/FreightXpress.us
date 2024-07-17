@@ -73,12 +73,12 @@ const Headers = () => {
                     </div>
                     <div className='sm:flex justify-between gap-x-5 items-center hidden'>
                         <button className='px-4 py-3 rounded-sm text-[#fff] bg-[#650704] font-semibold'>
-                            <a href="tel:+12092223455">
+                            <a href="tel:+19292492527">
                                 Call
                             </a>
                         </button>
                         <button className='px-4 py-3 rounded-sm text-[#fff] bg-[#650704] font-semibold text-nowrap'>
-                            <a href="https://wa.me/+12092223455" target="_blank" rel="noopener noreferrer">
+                            <a href="https://wa.me/+19292492527" target="_blank" rel="noopener noreferrer">
                                 Whats App
                             </a>
                         </button>

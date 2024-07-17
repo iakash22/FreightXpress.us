@@ -12,7 +12,7 @@ const HeaderBanner = () => {
                 <FaPhoneAlt
                     className='rotate-[24deg] md:text-[16px] text-[14px] mt-[2px]'
                 />
-                +1 (209) 222-3455
+                +1 (929) 249-2527
             </span>
         </div>
     )
