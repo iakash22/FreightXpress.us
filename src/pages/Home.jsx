@@ -62,6 +62,7 @@ const Home = () => {
                         data-aos-duration="1000"
                         data-aos-offset="300"
                         data-aos-easing="ease-in-sine"
+                        data-aos-delay="500"
                         className='sm:mt-[2rem] z-[10] sm:w-fit w-full block rounded-none sm:rounded-[35px] shadow-md shadow-[#eb5d5d69] sm:mb-0 mb-2'>
                         <video
                             autoPlay
