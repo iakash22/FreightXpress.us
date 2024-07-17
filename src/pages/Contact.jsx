@@ -59,9 +59,9 @@ const Contact = () => {
                             />
                             <IconCard
                                 title={"Telephone number"}
-                                info={"+1 (209) 222-3455"}
+                                info={"+1 (929) 249-2527"}
                                 Icon={GrPhone}
-                                to={'tel:+12092223455'}
+                                to={'tel:+19292492527'}
                             />
                             <IconCard
                                 title={"Mail address"}

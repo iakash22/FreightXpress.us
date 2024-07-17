@@ -67,11 +67,11 @@ const Footer = () => {
                             <span className='text-lg text-[#DDDDDD] text-nowrap'>513 W Bonaventure Ave, Tracy, CA 95391</span>
                         </div>
                         <div className='mt-2'>
-                            <a href="tel:+12092223455" className='flex gap-x-2 items-center cursor-pointer'>
+                            <a href="tel:+19292492527" className='flex gap-x-2 items-center cursor-pointer'>
                                 <FaPhone
                                     className='text-[18px] text-[#0592fd] self-center cursor-pointer'
                                 />
-                                <span className='text-lg text-[#DDDDDD]'>+1 (209) 222-3455</span>
+                                <span className='text-lg text-[#DDDDDD]'>+1 (929) 249-2527</span>
                             </a>
                         </div>
                     </div>
