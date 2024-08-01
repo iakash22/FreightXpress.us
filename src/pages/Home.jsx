@@ -39,10 +39,10 @@ const Home = () => {
     const [errorMsg, setErrorMsg] = useState();
     const URL = import.meta.env.VITE_DB_URL;
 
-    const submitHandler = async(e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
         setLoading(true);
-        await createSheetData(URL, data,setSuccessMsg,setErrorMsg);
+        await createSheetData(URL, data, setSuccessMsg, setErrorMsg);
         setLoading(false);
         console.log(data);
     }
@@ -81,8 +81,7 @@ const Home = () => {
                         <p className='lg:text-7xl md:text-5xl font-oswald font-bold text-[#fff] sm:text-7xl'>Corporation</p>
                     </h1>
                     <p className='text-[#650704] lg:text-xl font-oswald md:w-[40%] sm:pt-5 pt-0 sm:font-medium sm:mt-[3rem] mt-1 w-[80%] text-wrap'>
-                        Looking for the Best Transport Services?
-                        As a app web crawler expert, We will help to organize.
+                        Looking for the Best Transport Services? As experts in logistics, we specialize in finding and organizing the top transport options efficiently
                     </p>
                     <button className='px-4 py-3 rounded-sm font-oswald text-[#fff] bg-[#650704] font-semibold lg:mt-[4.5rem] md:mt-[3rem] my-[3rem]'>
                         <a href="/contact">
@@ -294,7 +293,7 @@ const Home = () => {
                     } */}
                 </form>
 
-                
+
             </div>
 
             <div className="relative overflow-hidden bg-[#FFFFFF] font-oswald sm:px-[4rem] px-4">
